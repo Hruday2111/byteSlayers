@@ -1,17 +1,19 @@
 # byteSlayers P2P Chat Application
 
-A peer-to-peer chat application built with Python enabling direct communication between users across a network. Supports local testing and network deployment with mandatory message forwarding capabilities.
+A peer-to-peer chat application built with Python that enables direct communication between users across a network. Features a simple command-line interface and supports both local testing and network deployment.
 
 ## Features
 - Direct messaging between peers
 - Message broadcasting to all connected peers
-- Real-time peer discovery
-- Mandatory message forwarding
-- Thread-safe concurrent operations
-- Command-line interface with emoji feedback
+- Real-time peer discovery and connection management
+- Automatic mandatory peer connections
+- Thread-safe operations for concurrent message handling
+- Non-blocking socket operations with select
+- Automatic peer table management
 
 ## Prerequisites
 - Python 3.12.7
+- Basic understanding of networking concepts
 - Network connectivity for multi-computer deployment
 
 ## Installation
@@ -19,6 +21,7 @@ A peer-to-peer chat application built with Python enabling direct communication 
 git clone https://github.com/Hruday2111/byteSlayers.git
 cd byteSlayers
 ```
+No additional dependencies required - uses Python's standard library only.
 
 ## Usage
 
@@ -28,7 +31,10 @@ cd byteSlayers
 ```bash
 python P2P.py
 ```
-3. Use `127.0.0.1` as IP and different ports (e.g., 5001, 5002, 5003)
+3. When prompted:
+   - Enter your team name
+   - Enter a unique port number (e.g., 5001, 5002, 5003)
+   - Your local IP will be automatically detected
 
 ### Network Deployment
 
@@ -54,29 +60,37 @@ python P2P.py
 ```
 
 ## Menu Options
-1. Send Message - Direct message to peer
-2. Query Active Peers - View connected peers
-3. Connect to Peers - Add new connections
-4. Broadcast Message - Send to all peers
-5. Disconnect from Peer - Remove connection
-0. Quit - Exit application
+1. Send Message - Send a direct message to a specific peer
+2. Query Active Peers - View list of currently connected peers
+3. Connect to Peers - Establish connection with new peers
+4. Broadcast Message - Send a message to all connected peers
+0. Quit - Exit the application
+
+## Implementation Details
+- Uses non-blocking sockets with `select` for efficient I/O
+- Automatic peer discovery and connection management
+- Threaded client handling for concurrent connections
+- Maintains peer table for active connections
+- Supports mandatory peer connections (configured in code)
+- Automatic peer removal on disconnect
 
 ## Troubleshooting
 
 ### Connection Refused
-- Verify IP and port
-- Check if target is running
-- Review firewall settings
+- Verify the target IP and port are correct
+- Ensure the target application is running
+- Check firewall settings
+- Verify network connectivity
 
 ### Address Already in Use
-- Try different port
-- Wait for timeout
-- Check port availability
+- Choose a different port number
+- Wait a few minutes for the previous connection to timeout
+- Check if another application is using the port
 
 ## Team Members
-- Hruday Amrit (230001051)
-- Chebolu Durga Shanmukha Srikanth (230001018)
-- Jothirmai (230003032)
+- Hruday Amrit                     (230001051)
+- Chebolu Srikanth                 (230001018)
+- Jothirmai                        (230003032)
 
 ## Acknowledgments
 Developed for CS-216 Introduction to Blockchain under Dr. Subhra Mazumdar.
