@@ -1,6 +1,6 @@
 # byteSlayers P2P Chat Application
 
-A peer-to-peer chat application built with Python that enables direct communication between users across a network. Features a simple command-line interface and supports both local testing and network deployment.
+A peer-to-peer chat application built with Python that enables direct communication between users across a network. Features a simple command-line interface and supports both local testing and network deployment. The application also handles the bonus question effectively.
 
 ## Features
 - Direct messaging between peers
@@ -88,8 +88,8 @@ python P2P.py
 - Check if another application is using the port
 
 ## Team Members
-- Hruday Amrit                     (230001051)
 - Chebolu Srikanth                 (230001018)
+- Hruday Amrit                     (230001051)
 - Jothirmai                        (230003032)
 
 ## Acknowledgments

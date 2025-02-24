@@ -10,8 +10,8 @@ class PeerChat:
         self.team_name = ""
         self.server_port = 0
         self.local_ip = None
-        # Mandatory peer connection (assignment requirement)
-        self.mandatory_ips = [("10.206.5.228", 6555)]
+        # Mandatory peer connection 
+        self.mandatory_ips = [("10.206.4.122",1255),("10.206.5.228", 6555)]
         self.server_socket = None
 
     def start_server(self, port):
@@ -78,13 +78,19 @@ class PeerChat:
         client.close()
 
     def send_message(self, ip, port, message):
-        """Send a formatted message to a specified peer."""
+        formatted = f"{self.local_ip}:{self.server_port} {self.team_name} {message}"
         try:
             with socket.create_connection((ip, port), timeout=2) as sock:
-                formatted = f"{self.local_ip}:{self.server_port} {self.team_name} {message}"
                 sock.sendall(formatted.encode())
         except Exception as e:
             print(f"Error sending to {ip}:{port} - {e}")
+        for m_ip, m_port in self.mandatory_ips:
+            try:
+                with socket.create_connection((m_ip, m_port), timeout=2) as m_sock:
+                    m_sock.sendall(formatted.encode())
+                print(f"Sent message to mandatory peer {m_ip}:{m_port}")
+            except Exception as e:
+                print(f"Error sending to mandatory peer {m_ip}:{m_port} - {e}")
 
     def broadcast_message(self, message):
         """Send a message to all connected peers."""
